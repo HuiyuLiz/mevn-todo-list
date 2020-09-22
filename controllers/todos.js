@@ -40,7 +40,7 @@ async function putTodo(req, res) {
 	const id = req.params.id
 	try {
 		const updated = await Todo.findByIdAndUpdate(id,req.body)
-		if (!updated) throw new Error('Something went wrong.')
+		if (!updated) throw new Error('Update failed.')
 		const updatedTodo = { ...updated._doc, ...req.body}
 		res.status(200).json({
 			message: 'success',
@@ -58,7 +58,7 @@ async function deleteTodo(req, res) {
 	const id = req.params.id
 	try {
 		const removed = await Todo.findByIdAndDelete(id)
-		if (!removed) throw new Error('Something went wrong.')
+		if (!removed) throw new Error('Delete failed.')
 		res.status(200).json({
 			message: 'success',
 			todo: removed
